@@ -62,3 +62,41 @@ print("Residual sum of squares: %.2f"
 
 # Explained variance score: 1 is perfect prediction
 print('Variance score: %.2f' % regr.score(x, y))
+
+
+
+
+'''
+1. read csv 
+2. select features for regression
+3. plot 
+4. create training [80:20] test/split 
+5. train data set 
+'''
+
+
+#1
+df = pd.read_csv("FuelConsumption.csv")
+df.head(10)
+
+#2
+cdf = df[['ENGINESIZE','CYLINDERS','FUELCONSUMPTION_CITY','FUELCONSUMPTION_HWY','FUELCONSUMPTION_COMB','CO2EMISSIONS']]
+cdf.head(10)
+
+#3
+plt.scatter(cdf.ENGINESIZE, cdf.CO2EMISSIONS,  color='blue')
+plt.xlabel("Engine size")
+plt.ylabel("Emission")
+plt.show()
+
+#4
+msk = np.random.rand(len(df)) < 0.8
+train = cdf[msk]
+test = cdf[~msk]
+
+#5
+plt.scatter(train.ENGINESIZE, train.CO2EMISSIONS,  color='blue')
+plt.xlabel("Engine size")
+plt.ylabel("Emission")
+plt.show()
+
