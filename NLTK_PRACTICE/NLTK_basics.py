@@ -42,3 +42,6 @@
     words = nltk.tokenize.word_tokenize(a)
     fd = nltk.FreqDist(words)
     fd.plot()
+    
+    
+    https://github.com/elithaxxor/machine_learning/blob/main_pi/NLTK_basics.py
