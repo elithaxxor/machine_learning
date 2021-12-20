@@ -5,7 +5,11 @@ import numpy as np
 def empty():
     pass
 
-'''create trackbar'''
+'''
+    * create trackbar
+    * must be in a loop, or vid.capture(0) to print changed values to text (cv2.gettrackbarPos) 
+    
+'''
 cv2.namedWindow('Trackbar-SLIDE')
 cv2.resizeWindow('Trackbar',640,320)
 cv2.createTrackbar('Hue Min', 'Trackbar-SLIDE',0,179,empty)
@@ -15,7 +19,15 @@ cv2.createTrackbar('Sat Max', 'Trackbar-SLIDE',255,255,empty)
 cv2.createTrackbar('Val Min', 'Trackbar-SLIDE',0,255,empty)
 cv2.createTrackbar('Val Max', 'Trackbar-SLIDE',255,255,empty)
 
+h_min = cv2.getTrackbarPos('Hue Min', 'Trackbar-SLIDE')
+h_max = cv2.getTrackbarPos('Hue Max', 'Trackbar-SLIDE')
+s_max = cv2.getTrackbarPos('Sat Max', 'Trackbar-SLIDE')
+s_min = cv2.getTrackbarPos('Sat Min', 'Trackbar-SLIDE')
+v_min = cv2.getTrackbarPos('Val Min', 'Trackbar-SLIDE')
+v_max = cv2.getTrackbarPos('Val Max', 'Trackbar-SLIDE')
+print(h_min, h_max, s_max, s_min, v_min, v_max)
 
+    
 
 loc = r"/Users/adelal-aali/Documents/CS/PROJECT/IP_CHECK/shot.png"
 cv2.namedWindow("Image")
