@@ -1,6 +1,22 @@
 import cv2
 import numpy as np
 
+
+def empty():
+    pass
+
+'''create trackbar'''
+cv2.namedWindow('Trackbar-SLIDE')
+cv2.resizeWindow('Trackbar',640,320)
+cv2.createTrackbar('Hue Min', 'Trackbar-SLIDE',0,179,empty)
+cv2.createTrackbar('Hue Max', 'Trackbar-SLIDE',179,179,empty)
+cv2.createTrackbar('Sat Min', 'Trackbar-SLIDE',0,255,empty)
+cv2.createTrackbar('Sat Max', 'Trackbar-SLIDE',255,255,empty)
+cv2.createTrackbar('Val Min', 'Trackbar-SLIDE',0,255,empty)
+cv2.createTrackbar('Val Max', 'Trackbar-SLIDE',255,255,empty)
+
+
+
 loc = r"/Users/adelal-aali/Documents/CS/PROJECT/IP_CHECK/shot.png"
 cv2.namedWindow("Image")
 img = cv2.imread(str(loc))
