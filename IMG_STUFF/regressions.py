@@ -8,7 +8,7 @@ import numpy as np
 !wget -O FuelConsumption.csv https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-ML0101EN-SkillsNetwork/labs/Module%202/data/FuelConsumptionCo2.csv
 ## simple regression - when one indepnedint var is used to predict another var 
 ## multople linear regression = 
-'''
+''
 
 '''
 1. read csv 
