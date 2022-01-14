@@ -1,17 +1,3 @@
-import os, platform, subprocess, time, traceback
-from translate import Translator
-from subprocess import call
-from textblob import TextBlob
-import requests
-import nlpcloud
-
-
-import inspect
-from PIL import Image
-from IPython.display import display, Image
-# from googletrans import Translator
-import pprint  # googletrans
-
 
 # pytesseract
 # cv2
@@ -67,50 +53,6 @@ class Colors:
     bgWhite = "\033[47m"
     bgBrightWhite = "\033[47;1m"
 
-def period_wait():
-    period = ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.']
-    # multi = [2,2,2,2,2,2,2,2,2,2]
-    period_len = len(period)
-    for z, x in enumerate(period):
-        print(x), time.sleep(.2)
-        if z <= period_len:
-            z += 1;
-            print(f"{yellow}{x * z}{reset}");
-            continue
-        elif z == period_len:
-            break
-def clear(): os_name = platform.system(); _ = call('clear' if os_name == 'Linux' or 'Windows' or 'Darwin' else 'cls')
-def display_header():
-    print('X' * 75)
-    color_red = Colors()
-    global red0
-    red0 = color_red.fgRed
-    global reset0
-    reset0 = color_red.reset
-    x = 'x'
-    print(f"{'X' * 125:^70}")
-    print(f"{'X' * 125:^70}")
-    pretty = f'\t\t\t\t {red0}xxx [TEXT-TEXT] // [IMG-TXT Translator] {reset0}'
-    print(f'{pretty : ^70}')
-    print(f"{'X' * 125: ^70}")
-    one = f'{bblue}[SCRIPT] *** A/V Converter *** {bblue}'
-    two = f'[USAGE] - [1] The Program will can: 1.] re-encode AV Conntainers to whatever format needed. IE- .MP4 -> .MOV'
-    three = f'[USAGE] - [2] Trim AV, with Min/Max Values && duration '
-    four = f'[USAGE] - [3] Compresses the AV, by rescaling resolution and resizing file'
-    five = f'[USAGE] - [5] Play Videos.{reset}'
-    six = f'{red}[+]-[+] copyright material from Adel Al-Aali [+]-[+] {reset}'
-    seven = f'[+] Future Addtion: Attach to OS.Listwalker and impliment Generator/text feed to auto convert large lists  [+]'
-    print(f"{one:^70}")
-    print(f"{two:^70}")
-    print(f"{three:^70}")
-    print(f"{four:^70}")
-    print(f"{five:^70}")
-    print(f"{six:^70}")
-    # print(f"{seven:^70}")
-    print(f"{x * 20: ^70}")
-    print()
-    print()
-
 
 ############
 # ---------#
@@ -135,7 +77,20 @@ reset = color.reset
 # self.inQuestion = inQuestion
 # self.translator = Translator
 #  self.spanish_translator = translator.Translator(self.inQuestion)
+
 class TextTranslate():
+    import os, platform, subprocess, time, traceback
+    from translate import Translator
+    from subprocess import call
+    from textblob import TextBlob
+    import requests
+    import nlpcloud
+    import inspect
+    from PIL import Image
+    from IPython.display import display, Image
+    # from googletrans import Translator
+    import pprint  # googletrans
+
     def __init__(self):
         super(TextTranslate).__init__()
         print(f'[+]-[+] Img-Txt Translator [+]-[+]')
