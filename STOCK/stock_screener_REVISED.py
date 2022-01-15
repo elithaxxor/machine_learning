@@ -42,7 +42,7 @@ try:
         print(f'[STOCK RANGE DF]\n{df.head()}')
         df.to_csv(f"{ticker}.csv") # Write df Object to .CSV
         df['Pct Change'] = df['Adj Close'].pct_change()
-        stock_return = (df['Pct Change'] + 1).cumprod()
+        df['Stock Return'] = (df['Pct Change'] + 1).cumprod() ## EDITED ON JAN 15 
         returns_compared = round((stock_return / sp500_return), 2)
         return_list.append(returns_compared)
         count +=1
