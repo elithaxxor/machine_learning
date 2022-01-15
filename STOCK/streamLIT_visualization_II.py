@@ -15,7 +15,7 @@ import matplotlib.dates as mdates
 image = Image.open('wsb.png')
 st.image(image, use_column_width=True)
 st.write('''
-    # Simple webapp to display *opening* and **closing** of stock prices.
+    #  webapp to display *opening* and **closing** of stock prices.
     ***  ''')
 
 ## preprocessing
@@ -40,16 +40,20 @@ def additional_data(tickerSymbol):
     end = dt.datetime.now()
 
     df = web.DataReader(tickerSymbol, f'yahoo', start, end)
-    df.to_csv(f"{tickerSymbol} + {dt.date.today()}.csv")  # Write df Object to .CSV
     df['Pct Change'] = df['Adj Close'].pct_change()
     df['Stock Return'] = (df['Pct Change'] + 1).cumprod()
     #df = df[['Open', 'High', 'Low', 'Close']]
     #df['Date'] = df['Date'].map(mdates.date2num)
     df.reset_index(inplace=True)
-
     st.subheader(' [5-DAY] Stock Information with PCT change and Return.')
     st.write(df.head())
     print(df.head())
+
+    # save csv and let user download
+    df.to_csv(f"pct change + {tickerSymbol} + {dt.date.today()}.csv")  # Write df Object to .CSV
+    saved_df1 = f"pct change + {tickerSymbol} + {dt.date.today()}.csv"
+    with open(saved_df1, 'rb') as f:
+        st.download_button(label='Download Stock Csv',data=f,  file_name=saved_df1, on_click=True)
 
 
     st.header(f'[{tickerSymbol}] [Pct Change] [{(df["Pct Change"].count())} Values] ') #volume
@@ -68,6 +72,11 @@ def graph_display(tickerSymbol):
     print('Processsing, ', tickerSymbol)
     tickerData = yf.Ticker(tickerSymbol)
     tickerDf = tickerData.history(period='1d', start='2010-5-31', end='2020-5-31')
+    tickerDf.to_csv(f"Security_Info + {tickerSymbol} + {dt.date.today()}.csv")  # Write df Object to .CSV
+
+    saved_df=f"Security_Info + {tickerSymbol} + {dt.date.today()}.csv"
+    with open(saved_df,'rb') as f:
+        st.download_button(label='Download Stock Csv',data=f,  file_name=f"Security_Info + {tickerSymbol} + {dt.date.today()}.csv", on_click=True)
 
     st.subheader(f'{tickerSymbol} [Stock Information] ')
     print(tickerDf.head())
