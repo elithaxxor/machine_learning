@@ -40,7 +40,7 @@ try:
     for ticker in stock_range:
         df = web.DataReader(ticker, 'yahoo', start, end)
         print(f'[STOCK RANGE DF]\n{df.head()}')
-        df.to_csv(f'stock_data.csv') # Write df Object to .CSV
+        df.to_csv(f"{ticker}.csv") # Write df Object to .CSV
         df['Pct Change'] = df['Adj Close'].pct_change()
         stock_return = (df['Pct Change'] + 1).cumprod()
         returns_compared = round((stock_return / sp500_return), 2)
@@ -59,7 +59,7 @@ try:
 
         for ticker in best_performers['Ticker']:
             try:
-                df = pd.read_csv(f'stock_data.csv', index_col=0)  ## load df from CSV.
+                df = pd.read_csv(f"{ticker}.csv", index_col=0)  ## load df from CSV.
                 moving_averages = [150, 200]
                 for ma in moving_averages:
                     df['SMA_' + str(ma)] = round(df['Adj Close'].rolling(window=ma).mean())
