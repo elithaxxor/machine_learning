@@ -37,15 +37,21 @@ print(final_df.head())
 
 try:
     count = 0
+
     for ticker in stock_range:
         df = web.DataReader(ticker, 'yahoo', start, end)
-        print(f'[STOCK RANGE DF]\n{df.head()}')
-        df.to_csv(f"{ticker}.csv") # Write df Object to .CSV
+
+        df['Ticker'] = ticker
         df['Pct Change'] = df['Adj Close'].pct_change()
         stock_return = (df['Pct Change'] + 1).cumprod() ## EDITED ON JAN 15
         df['Stock Return'] = stock_return
         returns_compared = round((stock_return / sp500_return), 2)
         return_list.append(returns_compared)
+
+        print(f'[{ticker}]\n [{start}]::[{end}] {df.head()}')
+        df.to_csv(f"{ticker}.csv") # Write df Object to .CSV
+
+
         count +=1
         if count == 30: break
         #print(stock_range)
@@ -62,12 +68,20 @@ try:
             print(f' [BEST-PERFORMERS] -- {best_performers}')
         except Exception:
             pass
+
         else:
+            print(f' [BEST-PERFORMERS] -- {best_performers}')
             for ticker in best_performers['Ticker']:
                 try:
                     df = pd.read_csv(f"{ticker}.csv", index_col=0)  ## load df from CSV.
+                    print('X' * 50)
+                    print(f'[{ticker}]\n [{start}]::[{end}] {df.head()}')
+                    print(df.head())
                     moving_averages = [150, 200]
+
                     for ma in moving_averages:
+                        print('[Moving-Average]', ma)
+                        print(type(ma))
                         df['SMA_' + str(ma)] = round(df['Adj Close'].rolling(window=ma).mean())
                         latest_price = df['Adj Close'][-1]
                         pe_ratio = float(si.get_quote_table(ticker)['PE Ratio (TTM)'])
@@ -84,6 +98,11 @@ try:
                         condition_3 = latest_price >= (.75 * high_52week)
                         condition_4 = pe_ratio < 40
                         condition_5 = peg_ratio < 2
+
+                        print('X' * 50)
+                        print(f'[{ticker}]\n [{start}]::[{end}] {df.head()}')
+                        print(df.head()); print()
+
 
                         ## final dataframe after conditons are met.
                         if (condition_1 and condition_2 and condition_3 and condition_4 and condition_5):
