@@ -1,3 +1,5 @@
+import urllib; 
+import json;
 def timezone(lat, lng, timestamp):
     # Join the parts of the URL together into one string.
     params = urllib.parse.urlencode(
