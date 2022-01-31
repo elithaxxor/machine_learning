@@ -4,6 +4,7 @@ import datetime as dt
 import traceback
 from yahoo_fin import stock_info as si
 
+''' THIS IS A SCRATCH FILE, PLEASE REFER TO THE FINAL '''
 ## Initilize Obj
 stock_range = si.tickers_sp500()
 start = dt.datetime.now()-dt.timedelta(days=365)
