@@ -15,8 +15,9 @@ from yahoo_fin import news
 from yahoo_fin import options
 import csv
 import pickle
+import traceback, os, json, sys
 
-import traceback
+''' Copyleft Material, from Adel Al-Aali. All Wrongs Reserved. '''
 
 '''             S&P Return 
     *  Use web.DataReader to access yahoo_fin
@@ -31,8 +32,21 @@ import traceback
     *  Get pct_change + 1 (1.x) and find cumaltive product by using last element of array 
 '''
 
+def animate_Rocket():
+    distanceFromTop = 20
+    while True:
+        print("\n" * distanceFromTop)
+        print("          /\        ")
+        print("          ||        ")
+        print("          ||        ")
+        print("         /||\        ")
+        time.sleep(0.2)
+        os.system('clear')
+        distanceFromTop -= 1
+        if distanceFromTop == 15:
+            break
 
-
+animate_Rocket()
 image = Image.open('wsb.png')
 st.image(image, use_column_width=True)
 st.write('''
