@@ -33,20 +33,22 @@ import traceback, os, json, sys
 '''
 
 def animate_Rocket():
-    distanceFromTop = 20
+    roof = 20
     while True:
-        print("\n" * distanceFromTop)
+        print("\n" * roof)
         print("          /\        ")
         print("          ||        ")
         print("          ||        ")
         print("         /||\        ")
         time.sleep(0.2)
         os.system('clear')
-        distanceFromTop -= 1
-        if distanceFromTop == 15:
-            break
+        roof -= 1
+        if roof == 15:
+            return(str('Copyleft Material, from Adel Al-Aali. All Wrongs Reserved.'))
 
-animate_Rocket()
+steal_me = animate_Rocket()
+print(steal_me*3)
+
 image = Image.open('wsb.png')
 st.image(image, use_column_width=True)
 st.write('''
